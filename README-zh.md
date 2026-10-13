@@ -1,6 +1,6 @@
 # dsh-xcode-mcp
 
-[English](README.md) | **中文**
+[English](https://github.com/OrrHsiao/dsh-xcode-mcp/blob/main/README.md) | **中文**
 
 **DeepSeek Harness 的 Apple Xcode MCP 桥接插件。**
 

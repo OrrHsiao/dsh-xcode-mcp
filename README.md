@@ -1,6 +1,6 @@
 # dsh-xcode-mcp
 
-**English** | [中文](README-zh.md)
+**English** | [中文](https://github.com/OrrHsiao/dsh-xcode-mcp/blob/main/README-zh.md)
 
 **Apple Xcode MCP bridge for [DeepSeek Harness](https://deepseek.com).**
 

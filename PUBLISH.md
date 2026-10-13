@@ -45,8 +45,11 @@ npm whoami         # 应打印你的用户名
 
 ## 2. 建 GitHub 仓库（决定别人能不能搜到你）
 
+> **本步已完成** —— 仓库已是 https://github.com/OrrHsiao/dsh-xcode-mcp，且 8 个 topic 都已设好。
+> 以下命令保留作为参考（比如以后要建别的插件）。
+
 ```bash
-cd /Users/orrhsiao/Desktop/tmp/dsh-xcode-mcp
+cd /Users/orrhsiao/Desktop/Code/dsh-xcode-mcp
 git init -b main
 git add .
 git commit -m "dsh-xcode-mcp 1.0.0: Apple Xcode MCP bridge for DeepSeek Harness"

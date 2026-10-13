@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Xcode MCP bridge",
+    "description": "Bridge Apple Xcode's headless MCP tool service (xcrun mcpbridge) into native mcp__xcode__* tools: projects, builds, tests, SwiftUI previews, simulators and OSLog."
+  }
+}

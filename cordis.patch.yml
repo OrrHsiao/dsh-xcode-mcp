@@ -1,0 +1,43 @@
+# Apple Xcode MCP bridge.
+#
+# Xcode 27 ships a headless MCP tool service. `/usr/bin/xcrun mcpbridge` is the
+# STDIO bridge to it: it reads JSON-RPC on stdin and forwards it to the Xcode
+# selected by `xcode-select`. Bridging it through the MCP client that already
+# ships with DeepSeek Harness exposes every Xcode tool to the model as
+# `mcp__xcode__<ToolName>` — on Xcode 27.0 that is 54 tools covering project
+# inspection, builds, tests, SwiftUI previews, simulator control, screenshots,
+# the accessibility hierarchy and OSLog.
+#
+# This bundle is configuration only. It declares no dependency on
+# @deepseek-ai/dsh-mcp-client: packages shipped with dsh resolve from the dsh
+# installation, not from this package.
+#
+# Requirements:
+#   - macOS with Xcode 27 or later (mcpbridge does not exist in earlier Xcode).
+#   - The headless service enabled and running:
+#       sudo xcrun mcp-server enable
+#       xcrun mcp-server start
+#       xcrun mcp-server status
+#   - A project open in Xcode for the project-scoped tools to have a target.
+#
+# Auth: the first connection raises an Xcode agent-authorization prompt. A
+# signed client such as DeepSeek Harness is remembered permanently; an unsigned
+# client's grant expires after roughly 24 hours.
+
+- insert:
+    - id: mcp-xcode
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: xcode
+        transport: stdio
+        command: /usr/bin/xcrun
+        args: ['mcpbridge']
+
+        # A cold build, a full test run or a preview render can take minutes,
+        # far beyond the 60 s default for a single tools/call.
+        toolCallTimeoutMs: 900000
+
+        # Keep the default: with Xcode closed, or the headless service not
+        # enabled, the harness must still start — only the mcp__xcode__* tools
+        # stay absent, and the reason is written to the log.
+        failOnStartupError: false

@@ -1,0 +1,51 @@
+{
+  "name": "dsh-xcode-mcp",
+  "version": "1.0.0",
+  "description": "Apple Xcode MCP bridge for DeepSeek Harness — bridges `xcrun mcpbridge` into native `mcp__xcode__*` tools. Configuration-only bundle: no code, no dependencies.",
+  "icon": "./icon.svg",
+  "type": "module",
+  "license": "MIT",
+  "author": "OrrHsiao",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OrrHsiao/dsh-xcode-mcp.git"
+  },
+  "homepage": "https://github.com/OrrHsiao/dsh-xcode-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/OrrHsiao/dsh-xcode-mcp/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "deepseek",
+    "deepseek-harness",
+    "xcode",
+    "mcp",
+    "mcpbridge",
+    "ios",
+    "macos",
+    "swift"
+  ],
+  "files": [
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "os": [
+    "darwin"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

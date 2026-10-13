@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# npm pack / publish artifacts
+*.tgz
+
+# editors
+.vscode/
+.idea/
+
+# install-local.sh backups live in the DSH profile, not here
+*.bak-*

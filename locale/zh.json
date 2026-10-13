@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Xcode MCP 桥接",
+    "description": "把 Apple Xcode 的 headless MCP 工具服务（xcrun mcpbridge）桥接为原生 mcp__xcode__* 工具：工程、构建、测试、SwiftUI Preview、模拟器与 OSLog。"
+  }
+}

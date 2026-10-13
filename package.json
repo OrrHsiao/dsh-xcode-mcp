@@ -1,6 +1,6 @@
 {
   "name": "dsh-xcode-mcp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Apple Xcode MCP bridge for DeepSeek Harness — bridges `xcrun mcpbridge` into native `mcp__xcode__*` tools. Configuration-only bundle: no code, no dependencies.",
   "icon": "./icon.svg",
   "type": "module",

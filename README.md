@@ -1,5 +1,7 @@
 # dsh-xcode-mcp
 
+**English** | [中文](README.zh.md)
+
 **Apple Xcode MCP bridge for [DeepSeek Harness](https://deepseek.com).**
 
 Xcode 27 ships a *headless MCP tool service*. `/usr/bin/xcrun mcpbridge` is the
@@ -20,9 +22,19 @@ This package carries that configuration instead, so the connection becomes one
 installable thing that is named, versioned, listed in the Plugins page and
 removable like any other plugin.
 
-It contains **no JavaScript**: a configuration-only bundle is a manifest plus a
-patch. There is nothing to audit beyond the 40 lines of YAML below, and no
-dependency to install — `@deepseek-ai/dsh-mcp-client` ships with dsh itself.
+## What actually gets installed
+
+**No JavaScript runs.** A configuration-only bundle is a manifest plus a patch —
+8 files, about 4 kB unpacked, no `dependencies`, no `scripts`, no build step:
+
+```
+package.json  cordis.patch.yml  icon.svg
+locale/en.json  locale/zh.json  README.md  README.zh.md  LICENSE
+```
+
+`@deepseek-ai/dsh-mcp-client`, the plugin that does the talking, ships with dsh
+itself and is deliberately not a dependency of this package. There is nothing to
+audit here beyond the ~40 lines of YAML under [Configure](#configure).
 
 ## Requirements
 
@@ -49,20 +61,29 @@ grant expires after about 24 hours.
 
 ## Install
 
-From a directory, through the agent:
+From the **Plugins** page in the sidebar, enter the package name:
 
-> Install the bundle at `/absolute/path/to/dsh-xcode-mcp`.
+```
+dsh-xcode-mcp
+```
 
-or from the **Plugins** page in the sidebar, which accepts the same absolute
-path. Once published to a registry, the package name alone is enough.
+Installing enables the bundle; it usually activates through HMR. If the
+`mcp__xcode__*` tools do not appear, restart the profile so the new bundle layer
+is composed.
 
-Then **restart the profile** so the new bundle layer is composed.
+An absolute path to a checkout works the same way, for a pre-publish install.
 
 ## Verify
 
 Ask for something that needs Xcode, or check the tool list for `mcp__xcode__*`.
-A first call worth making is `mcp__xcode__XcodeListWorkspaces`, which reports the
-open workspaces, schemes and permitted folders.
+A good first call is `mcp__xcode__XcodeListWorkspaces`:
+
+```
+* workspaceIdentifier: workspace-xxxxxxxxxx, workspacePath: /path/to/App.xcodeproj
+```
+
+Then `mcp__xcode__XcodeListSchemes` with that identifier lists the project's
+schemes. Both were verified against Xcode 27.0 (27A266a).
 
 ## Configure
 
@@ -80,8 +101,8 @@ the profile's own `cordis.patch.yml` — a matching override replaces the whole
     transport: stdio
     command: /usr/bin/xcrun
     args: ['mcpbridge']
-    toolCallTimeoutMs: 900000
-    failOnStartupError: false
+    toolCallTimeoutMs: 900000   # default is 60 s; builds need more
+    failOnStartupError: false   # Xcode closed must not block harness startup
 ```
 
 To point at a specific Xcode instead of the one `xcode-select` names, add `env`

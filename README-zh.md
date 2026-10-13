@@ -76,6 +76,27 @@ dsh-xcode-mcp
 再拿这个 identifier 调 `mcp__xcode__XcodeListSchemes`，就能列出工程里的 scheme。
 两者都已在 Xcode 27.0 (27A266a) 上实测通过。
 
+## 升级
+
+**DSH 不会自动更新已安装的插件。** 它自己的 Plugins 页就写着这句话，而且覆盖安装会被
+拒绝（提示「该插件已安装」）—— 必须先卸载才能装新版。
+
+所以 Plugins 页的升级路径是：**先卸载，再重新安装。**
+
+在终端里可以跳过卸载这一步：
+
+```sh
+dsh plugin --profile <profile> update dsh-xcode-mcp
+```
+
+两种方式都要注意一件事：插件管理器底层用的是 pnpm，而 pnpm 的
+[`minimumReleaseAge`](https://pnpm.io/zh/supply-chain-security) 默认是 `1440` 分钟。
+**发布不满一天的版本装不上** —— 即使确实有新版本，命令也只会回一句
+`Already up to date`。这是供应链防护，不是故障：等一天即可；如果确认这个版本是自己发的，
+也可以在 profile 的 `pnpm-workspace.yaml` 里调低这个设置。
+
+本插件是纯声明式 bundle，升级只是替换几个声明文件，前后都不会执行任何代码。
+
 ## 配置
 
 这一行的 id 是 `mcp-xcode`，它的 `config` 就是完整的

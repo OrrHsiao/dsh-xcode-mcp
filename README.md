@@ -85,6 +85,30 @@ A good first call is `mcp__xcode__XcodeListWorkspaces`:
 Then `mcp__xcode__XcodeListSchemes` with that identifier lists the project's
 schemes. Both were verified against Xcode 27.0 (27A266a).
 
+## Upgrading
+
+**DSH does not update installed plugins automatically.** Its own Plugins page
+says so, and re-installing over an existing copy is refused with *"this plugin is
+already installed"* — the uninstall is what makes the upgrade possible.
+
+So the Plugins-page route is: **uninstall, then install again.**
+
+From a shell, the same upgrade without the uninstall step:
+
+```sh
+dsh plugin --profile <profile> update dsh-xcode-mcp
+```
+
+One thing to expect either way: the plugin manager installs through pnpm, whose
+[`minimumReleaseAge`](https://pnpm.io/supply-chain-security) defaults to `1440`
+minutes. **A release less than a day old will not install**, and the command
+reports `Already up to date` even though a newer version exists. That is
+supply-chain protection, not a failure — wait a day, or lower the setting in the
+profile's `pnpm-workspace.yaml` if you know the release is yours.
+
+Because this bundle is configuration only, an upgrade replaces a handful of
+declaration files. It runs no code before or after.
+
 ## Configure
 
 The row is `mcp-xcode`; its `config` is the full

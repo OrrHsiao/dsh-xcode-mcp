@@ -35,7 +35,7 @@
     "icon.svg",
     "locale/*.json",
     "README.md",
-    "README.zh.md",
+    "README-zh.md",
     "LICENSE"
   ],
   "engines": {

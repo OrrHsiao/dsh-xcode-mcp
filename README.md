@@ -1,6 +1,6 @@
 # dsh-xcode-mcp
 
-**English** | [中文](README.zh.md)
+**English** | [中文](README-zh.md)
 
 **Apple Xcode MCP bridge for [DeepSeek Harness](https://deepseek.com).**
 
@@ -29,7 +29,7 @@ removable like any other plugin.
 
 ```
 package.json  cordis.patch.yml  icon.svg
-locale/en.json  locale/zh.json  README.md  README.zh.md  LICENSE
+locale/en.json  locale/zh.json  README.md  README-zh.md  LICENSE
 ```
 
 `@deepseek-ai/dsh-mcp-client`, the plugin that does the talking, ships with dsh

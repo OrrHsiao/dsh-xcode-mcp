@@ -25,7 +25,7 @@ patch —— 8 个文件，解包约 4 kB，没有 `dependencies`，没有 `scri
 
 ```
 package.json  cordis.patch.yml  icon.svg
-locale/en.json  locale/zh.json  README.md  README.zh.md  LICENSE
+locale/en.json  locale/zh.json  README.md  README-zh.md  LICENSE
 ```
 
 真正干活的 `@deepseek-ai/dsh-mcp-client` 随 dsh 一起发布，本包**刻意不依赖它**。
